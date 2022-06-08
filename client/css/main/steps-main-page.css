@@ -1,0 +1,50 @@
+.conteiner_steps_main_page {
+    width: 100%;
+    background-color: #EBEBEB;
+    margin: 0;
+    padding: 0;
+}
+
+.conteiner_steps_main_page p {
+    margin: 0;
+    padding: 0;
+    font-family: Mplus1p;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 45px;
+    text-align: center;
+    padding-top: 2.5%;
+}
+
+.stages_of_passage {
+    text-align: center;
+    padding-top: 2%;
+}
+
+.stages_of_passage img {
+    width: 80%;
+    height: 80%;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+.container_mobile_steps {
+    display: none;
+}
+
+@media (max-width: 650px) {
+    .container_mobile_steps {
+        display: flex;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 650px) {
+    .stages_of_passage {
+        display: none;
+    }
+}
