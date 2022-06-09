@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const resultDate = new Date(document.querySelector('.vote-form__result-date').value);
             const emailSendType = document.getElementById('op-email-send-type').value;
             const file = document.getElementById('vote-file').files[0];
+            const login = localStorage.getItem('login');
             const body = JSON.stringify({
                 voteName,
                 votersCount,
@@ -136,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 endDate,
                 resultDate,
                 emailSendType,
+                login,
             });
             fetch('http://localhost:3000/registartion-vote', {
                 method: 'POST',
@@ -143,7 +145,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Content-type': 'application/json',
                 },
                 body,
-            })
+            }).then((data) => data.json())
+                .then((data) => {
+                    if(data.result) {
+                        alert('Создание голосования прошло успешно');
+                    } else {
+                        alert('Не удалось добавить голосование');
+                    }
+                })
+                .catch((e) => {
+                    console.error(e.message);
+                    alert('Что-то пошло не так');
+                })
         })
     }
 });

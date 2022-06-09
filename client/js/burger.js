@@ -5,6 +5,7 @@ $(document).ready(function () {
 	});
 	$('.header__login').click(function () {
 		localStorage.removeItem('isLogin');
+		localStorage.removeItem('login');
 		if($('#vote-form-container')) {
 			$('#vote-form-container').remove();
 		}

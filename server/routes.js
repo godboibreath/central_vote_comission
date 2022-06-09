@@ -5,5 +5,6 @@ const router = Router();
 
 router.post("/registartion-op", Controller.registartionOp);
 router.post("/registartion-vote", Controller.registrationVote);
+router.post("/login", Controller.login);
 
 module.exports = router;
