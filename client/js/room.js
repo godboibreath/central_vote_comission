@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const login = document.getElementById('op-login').value;
             const voteName = document.getElementById('op-vote-name').value;
             if(login === 'admin' && voteName === 'vote') {
-                alert('Добро пожаловать!');
                 localStorage.setItem('isLogin', true);
                 document.getElementById('op-login').value = '';
                 document.getElementById('op-vote-name').value = '';

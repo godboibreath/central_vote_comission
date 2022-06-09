@@ -14,6 +14,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Невалидный E-mail')
             } else if (login && password && repassword && password === repassword) {
                 alert('Отправление запроса на регистрацию');
+                const body = JSON.stringify({ email, login, password });
+                fetch('http://localhost:3000/registartion-op', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                    body,
+                }).then((data) => data.json()).then((data) => {
+                    if (data.result) {
+                        alert('Регистрация прошла успешно');
+                    } else {
+                        alert('Не удалось выполнить регистрацию');
+                    }
+                }).catch((error) => {
+                    alert('Что-то пошло не так');
+                    console.error(`fetch error: ${error.message}`);
+                });
             }
         } catch (error) {
             console.error(error.message);
@@ -100,5 +117,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 candidates.forEach((item) => item.remove());
             }
         });
+        document.getElementById('vote-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const voteName = document.querySelector('.vote-form__vote-name').value;
+            const votersCount = document.querySelector('.vote-form__counts-voters').value;
+            const candidates = [];
+            document.querySelectorAll('.vote-form__candidate').forEach((item) => candidates.push(item.value));
+            const startDate = new Date(document.querySelector('.vote-form__start-date').value);
+            const endDate = new Date(document.querySelector('.vote-form__end-date').value);
+            const resultDate = new Date(document.querySelector('.vote-form__result-date').value);
+            const emailSendType = document.getElementById('op-email-send-type').value;
+            const file = document.getElementById('vote-file').files[0];
+            const body = JSON.stringify({
+                voteName,
+                votersCount,
+                candidates,
+                startDate,
+                endDate,
+                resultDate,
+                emailSendType,
+            });
+            fetch('http://localhost:3000/registartion-vote', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body,
+            })
+        })
     }
 });
