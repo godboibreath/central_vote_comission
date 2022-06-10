@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     body,
                 }).then((data) => data.json()).then((data) => {
-                    if (data.result) {
+                    if (data.result === true) {
                         alert('Регистрация прошла успешно');
                     } else {
-                        alert('Не удалось выполнить регистрацию');
+                        alert(data.message || 'Не удалось выполнить регистрацию');
                     }
                 }).catch((error) => {
                     alert('Что-то пошло не так');
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ${fileInput}
                     <div class="vote-form__button-container">
                         <button class="vote-form__button" id="vote-request" type="submit">Подать заявку</button>
-                        <button class="vote-form__button" id="add-candidate" type="button">Добавить кадидата</button>
+                        <button class="vote-form__button" id="add-candidate" type="button">Добавить кандидата</button>
                     </div>
                 </form>
             </div>`;
@@ -139,6 +139,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 emailSendType,
                 login,
             });
+            document.querySelector('.vote-form__vote-name').value = '';
+            document.querySelector('.vote-form__counts-voters').value = '';
+            document.querySelector('.vote-form__start-date').value = '';
+            document.querySelector('.vote-form__end-date').value = '';
+            document.querySelector('.vote-form__result-date').value = '';
             fetch('http://localhost:3000/registartion-vote', {
                 method: 'POST',
                 headers: {
@@ -147,10 +152,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 body,
             }).then((data) => data.json())
                 .then((data) => {
-                    if(data.result) {
+                    if(data.result === true) {
                         alert('Создание голосования прошло успешно');
                     } else {
-                        alert('Не удалось добавить голосование');
+                        alert(data.message || 'Не удалось добавить голосование');
                     }
                 })
                 .catch((e) => {
