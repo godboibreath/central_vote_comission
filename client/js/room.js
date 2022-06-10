@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         alert('Что-то пошло не так');
                         console.error(e.message);
                     });
+            } else {
+                alert('Необходимо заполнить все поля');
             }
         })
     }

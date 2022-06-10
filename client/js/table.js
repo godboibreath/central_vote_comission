@@ -8,6 +8,21 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Необходимо заполнить все поля.');
         } else {
             alert('Внимание! После скачивания регистрация с этими данными на получение бюллитеня второй раз и более невозможна.');
+            const body = JSON.stringify({login, voteName, id});
+            fetch('http://localhost:3000/login-voter', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body
+            }).then((data) => data.json())
+                .then((data) => {
+                    alert(`Возможность скачать бюллетень: ${JSON.stringify(data)}`);
+                })
+                .catch((e) => {
+                    console.error(e.message);
+                    alert('Что-то пошло не так');
+                });
         }
     })
 })
