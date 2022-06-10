@@ -135,6 +135,7 @@ html {
 
 
 .header__login {
+    cursor: pointer;
     z-index: 3;
 }
 

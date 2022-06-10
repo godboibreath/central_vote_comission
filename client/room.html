@@ -10,6 +10,7 @@
     <link href="css/main/content-offer-main-page.css" rel="stylesheet">
     <link href="css/cik/registration-op-from.css" rel="stylesheet">
     <link href="css/cik/vote-form.css" rel="stylesheet">
+    <link href="css/room/room.css" rel="stylesheet">
     <title>Центральная Избирательная Комиссия - ЦИК</title>
 </head>
 
@@ -32,7 +33,7 @@
                             <li> <a href="cik.html" class="header__link">ЦИК</a></li>
                             <li><a href="table.html" class="header__link">Стол бюллетеней</a></li>
                             <li> <a href="room.html" class="header__link">Комната голосования</a></li>
-                            <div title="Выйти" class="header__login"><img src="./images/personal_area.png"></div>
+                            <div class="header__login"><img src="./images/personal_area.png"></div>
                         </ul>
                     </nav>
                 </div>
@@ -40,28 +41,57 @@
         </header>
     </div>
 
-    <div class="conteiner_offer_main_page" />
-    <div class="conteiner_offer_main_page_text" id="registration-op-container">
-        <p>Центральная избирательная <br> комиссия</p>
-        <div class="container_offer_login_page">
-            <div class="form-login-login_page">
-                <form action="#" method="post" name="registration-op-form" id="registration-op-form">
-                    <img src="images/personal_area.png" width="50" height="50">
-                    <p>Регистрация организации</p>
-                    <input type="text" name="email" placeholder="E-mail" id="op-email"> </br></br>
-                    <input type="text" name="login" placeholder="Логин" id="op-login"> </br></br>
-                    <input type="password" name="password" placeholder="Пароль" id="op-password"> </br></br>
-                    <input type="password" name="repassword" placeholder="Повторите пароль" id="op-repassword"></br></br>
-                    <input type="submit" name="submit" value="Регистрация">
-                </form>
+    <div class="conteiner_offer_main_page"></div>
+
+    <div class="table-block">
+        <div class="table-block__container">
+            <p class="table-block__title">Таблица текущего результата голосования</p>
+            <table class="table-block__table">
+                <thead>
+                    <tr>
+                        <th>Позиции</th>
+                        <th>Число голосов</th>
+                        <th>Список НБ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Позиция 1</td>
+                        <td>a_1</td>
+                        <td>Посмотреть, Скачать</td>
+                    </tr>
+                    <tr>
+                        <td>Позиция 2</td>
+                        <td>a_2</td>
+                        <td>Посмотреть, Скачать</td>
+                    </tr>
+                    <tr>
+                        <td>Позиция 3</td>
+                        <td>a_3</td>
+                        <td>Посмотреть, Скачать</td>
+                    </tr>
+                    <tr>
+                        <td>Позиция 4</td>
+                        <td>a_4</td>
+                        <td>Посмотреть, Скачать</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="btns_table">
+                <div class="first_btn_table">
+                    <a href="#">Загрузить бюллетень</a>
+                </div>
+                <div class="first_btn_table">
+                    <a href="#">Скачать результаты голосования</a>
+                </div>
+
             </div>
         </div>
-    </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/burger.js"></script>
-    <script src="./js/cik.js"></script>
+    <script src="./js/room.js"></script>
 </body>
 
 </html>

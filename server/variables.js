@@ -1,0 +1,2 @@
+exports.opsArray = [];
+exports.votesArray = [];

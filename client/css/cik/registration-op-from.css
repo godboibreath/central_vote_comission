@@ -37,7 +37,7 @@
     Height: 42px;
 }
 
-.form-login-login_page form input[type="text"]{
+.form-login-login_page form input[type="text"],input[type="password"] {
     background: #FFFFFF;
     border: 1px solid #3D426E;
     box-sizing: border-box;

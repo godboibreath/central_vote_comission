@@ -1,0 +1,96 @@
+.vote-form {
+    width: 100%;
+    background-color: #ebebeb;
+    ;
+    background-repeat: no-repeat;
+    text-align: center;
+    background-position: center;
+}
+
+.vote-form__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.vote-form__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40rem;
+}
+.vote-form__form p {
+    margin: 0.2rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.vote-form__form input,
+select {
+    margin: 0.5rem 0;
+    width: 100%;
+    border-radius: 0.625rem;
+    border: 1px solid #3D426E;
+    padding: 0.6rem;
+    font-size: 1.5rem;
+}
+
+.file-input__wrapper {
+    width: 100%;
+    position: relative;
+    margin: 15px 0;
+    text-align: center;
+}
+.file-input__wrapper p {
+    font-size: 1.2rem;
+}
+
+.file-input__file {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.file-input__file-button-text {
+    line-height: 1;
+    margin-top: 1px;
+}
+
+.file-input__file-button {
+    width: 100%;
+    height: 60px;
+    background: #293284;
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.vote-form__title {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+}
+
+.vote-form__button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.vote-form__button {
+    background-color: #293284;
+    padding: 0.3rem;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 1.2rem;
+}
