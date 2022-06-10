@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Невалидный E-mail')
             } else if (login && password && repassword && password === repassword) {
                 alert('Отправление запроса на регистрацию');
+                document.getElementById('op-email').value = '';
+                document.getElementById('op-login').value = '';
+                document.getElementById('op-password').value = '';
+                document.getElementById('op-repassword').value = '';
                 const body = JSON.stringify({ email, login, password });
                 fetch('http://localhost:3000/registartion-op', {
                     method: 'POST',
@@ -129,7 +133,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const emailSendType = document.getElementById('op-email-send-type').value;
             const file = document.getElementById('vote-file').files[0];
             const login = localStorage.getItem('login');
-            if (!(voteName && votersCount && !candidates.some((item) => item.value === '') && startDate != 'Invalid Date' && endDate != 'Invalid Date' && resultDate != 'Invalid Date')) {
+            if (!(voteName && votersCount && startDate != 'Invalid Date' && endDate != 'Invalid Date' && resultDate != 'Invalid Date')) {
+                alert('Необходимо заполнить все поля');
+            } else if (candidates.length > 0 && candidates.every((item) => item.value !== '')) {
                 const body = JSON.stringify({
                     voteName,
                     votersCount,
@@ -145,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelector('.vote-form__start-date').value = '';
                 document.querySelector('.vote-form__end-date').value = '';
                 document.querySelector('.vote-form__result-date').value = '';
-                document.querySelectorAll('.vote-form__candidate').forEach((item) => item.value = '');
+                document.querySelectorAll('.vote-form__candidate').forEach((item) => item.remove());
                 fetch('http://localhost:3000/registartion-vote', {
                     method: 'POST',
                     headers: {
@@ -165,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         alert('Что-то пошло не так');
                     });
             } else {
-                alert('Необходимо заполнить все поля');
+                alert('Необходимо добавить и/или заполнить кандидатов');
             }
         })
     }

@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     login,
                     password
                 });
+                document.getElementById('op-login').value = '';
+                document.getElementById('op-password').value = '';
                 fetch('http://localhost:3000/login', {
                     method: 'POST',
                     headers: {

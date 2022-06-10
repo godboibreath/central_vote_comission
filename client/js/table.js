@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Необходимо заполнить все поля.');
         } else {
             alert('Внимание! После скачивания регистрация с этими данными на получение бюллитеня второй раз и более невозможна.');
+            document.getElementById('voter-op-login').value = '';
+            document.getElementById('voter-vote-name').value = '';
+            document.getElementById('voter-id').value = '';
             const body = JSON.stringify({login, voteName, id});
             fetch('http://localhost:3000/login-voter', {
                 method: 'POST',

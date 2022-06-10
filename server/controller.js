@@ -8,7 +8,7 @@ class Controller {
             const opsArray = !!opsString ? JSON.parse(opsString) : [];
             const { email, login, password } = req.body;
             if (opsArray.some((item) => item.email === email || item.login === login)) {
-                res.status(403).json({ result: false, message: 'На данного ответственного представителя уже заведена учетная запись' }).end();
+                res.status(403).json({ result: false, message: 'Данный логин или E-mail уже используются' }).end();
             } else {
                 opsArray.push({ email, login, password });
                 await FileSystem.writeFile('./data/ops.json', JSON.stringify(opsArray, null, 2));
@@ -27,7 +27,9 @@ class Controller {
             const votesArray = !!votesString ? JSON.parse(votesString) : [];
             const { voteName, votersCount, candidates, startDate, endDate, resultDate, emailSendType, file, login } = req.body;
             const opItem = opsArray.find((item) => item.login === login);
-            if (!opItem) {
+            if (moment.utc(startDate).valueOf() > moment.utc(endDate).valueOf() || moment.utc(endDate).valueOf() > moment.utc(resultDate).valueOf()) {
+                res.status(400).json({ result: false, message: `Невалидное время` }).end();
+            } else if (!opItem) {
                 res.status(400).json({ result: false, message: `Пользователь ${login} не зарегестрирован` }).end();
             } else {
                 const voteOpItem = votesArray.find((item) => item.login === opItem.login);
