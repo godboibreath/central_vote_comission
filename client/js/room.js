@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <img src="images/personal_area.png" width="50" height="50">
                         <p>Вход организации</p>
                         <input type="text" name="op-login" placeholder="Логин" id="op-login"> </br></br>
-                        <input type="text" name="op-password" placeholder="Пароль" id="op-password"> </br></br>
+                        <input type="password" name="op-password" placeholder="Пароль" id="op-password"> </br></br>
                         <input type="submit" name="submit" value="Вход">
                     </form>
                 </div>
@@ -35,10 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     body,
                 }).then((data) => data.json())
                     .then((data) => {
-                        if (data.result) {
+                        if (data.result === true) {
                             localStorage.setItem('isLogin', true);
                             localStorage.setItem('login', login);
                             alert('Вход выполнен успешно');
+                        } else {
+                            alert(data.message || 'Ошибка при входе');
                         }
                     })
                     .catch((e) => {

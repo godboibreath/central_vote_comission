@@ -59,6 +59,8 @@ class Controller {
             const { login, password } = req.body;
             if (opsArray.some((item) => item.login === login && item.password === password)) {
                 res.status(200).json({ result: true, }).end();
+            } else {
+                res.status(400).json({ result: false, message: 'Неверный логин или пароль' }).end();
             }
         } catch (e) {
             console.error(`POST, /login error: ${e.message}`);
