@@ -1,3 +1,4 @@
+const moment = require('moment');
 const FileSystem = require('./file.system.module');
 
 class Controller {
@@ -31,7 +32,15 @@ class Controller {
             } else {
                 const voteOpItem = votesArray.find((item) => item.login === opItem.login);
                 if (!voteOpItem) {
-                    const votes = [{ voteName, votersCount, candidates, startDate, endDate, resultDate, emailSendType }];
+                    const votes = [{
+                        voteName,
+                        votersCount,
+                        candidates,
+                        startDate: moment.utc(startDate).valueOf(),
+                        endDate: moment.utc(endDate).valueOf(),
+                        resultDate: moment.utc(resultDate).valueOf(),
+                        emailSendType
+                    }];
                     votesArray.push({
                         login: opItem.login,
                         votes,
@@ -41,7 +50,15 @@ class Controller {
                 } else if (voteOpItem.votes.some((item) => item.voteName === voteName)) {
                     res.status(400).json({ result: false, message: `Голосование ${voteName} уже существует` }).end();
                 } else {
-                    voteOpItem.votes.push({ voteName, votersCount, candidates, startDate, endDate, resultDate, emailSendType });
+                    voteOpItem.votes.push({
+                        voteName,
+                        votersCount,
+                        candidates,
+                        startDate: moment.utc(startDate).valueOf(),
+                        endDate: moment.utc(endDate).valueOf(),
+                        resultDate: moment.utc(resultDate).valueOf(),
+                        emailSendType
+                    });
                     await FileSystem.writeFile('./data/votes.json', JSON.stringify(votesArray, null, 2));
                     res.status(200).json({ result: true, }).end();
                 };

@@ -129,39 +129,44 @@ document.addEventListener('DOMContentLoaded', function () {
             const emailSendType = document.getElementById('op-email-send-type').value;
             const file = document.getElementById('vote-file').files[0];
             const login = localStorage.getItem('login');
-            const body = JSON.stringify({
-                voteName,
-                votersCount,
-                candidates,
-                startDate,
-                endDate,
-                resultDate,
-                emailSendType,
-                login,
-            });
-            document.querySelector('.vote-form__vote-name').value = '';
-            document.querySelector('.vote-form__counts-voters').value = '';
-            document.querySelector('.vote-form__start-date').value = '';
-            document.querySelector('.vote-form__end-date').value = '';
-            document.querySelector('.vote-form__result-date').value = '';
-            fetch('http://localhost:3000/registartion-vote', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body,
-            }).then((data) => data.json())
-                .then((data) => {
-                    if(data.result === true) {
-                        alert('Создание голосования прошло успешно');
-                    } else {
-                        alert(data.message || 'Не удалось добавить голосование');
-                    }
-                })
-                .catch((e) => {
-                    console.error(e.message);
-                    alert('Что-то пошло не так');
-                })
+            if (!(voteName && votersCount && !candidates.some((item) => item.value === '') && startDate != 'Invalid Date' && endDate != 'Invalid Date' && resultDate != 'Invalid Date')) {
+                const body = JSON.stringify({
+                    voteName,
+                    votersCount,
+                    candidates,
+                    startDate,
+                    endDate,
+                    resultDate,
+                    emailSendType,
+                    login,
+                });
+                document.querySelector('.vote-form__vote-name').value = '';
+                document.querySelector('.vote-form__counts-voters').value = '';
+                document.querySelector('.vote-form__start-date').value = '';
+                document.querySelector('.vote-form__end-date').value = '';
+                document.querySelector('.vote-form__result-date').value = '';
+                document.querySelectorAll('.vote-form__candidate').forEach((item) => item.value = '');
+                fetch('http://localhost:3000/registartion-vote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                    body,
+                }).then((data) => data.json())
+                    .then((data) => {
+                        if (data.result === true) {
+                            alert('Создание голосования прошло успешно');
+                        } else {
+                            alert(data.message || 'Не удалось добавить голосование');
+                        }
+                    })
+                    .catch((e) => {
+                        console.error(e.message);
+                        alert('Что-то пошло не так');
+                    });
+            } else {
+                alert('Необходимо заполнить все поля');
+            }
         })
     }
 });
